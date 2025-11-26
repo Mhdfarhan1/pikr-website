@@ -1,0 +1,35 @@
+[27-Oct-2025 21:38:51 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''4''' at line 1 in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:52 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: The used SELECT statements have a different number of columns in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:52 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''4''' at line 1 in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:53 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: The used SELECT statements have a different number of columns in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:53 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: The used SELECT statements have a different number of columns in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:53 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: The used SELECT statements have a different number of columns in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6
+[27-Oct-2025 21:38:54 Asia/Jakarta] PHP Fatal error:  Uncaught mysqli_sql_exception: The used SELECT statements have a different number of columns in /home/pikreque/public_html/detail/detail_frofile.php:6
+Stack trace:
+#0 /home/pikreque/public_html/detail/detail_frofile.php(6): mysqli_query(Object(mysqli), 'SELECT * FROM f...')
+#1 {main}
+  thrown in /home/pikreque/public_html/detail/detail_frofile.php on line 6

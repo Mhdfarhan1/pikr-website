@@ -1,0 +1,22 @@
+
+  .grayscale-hover {
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+    cursor: pointer;
+  }
+
+  .grayscale-hover:hover,
+  .grayscale-hover:focus,
+  .grayscale-hover:active {
+    filter: grayscale(0%);
+  }
+
+  .gallery-hidden {
+    display: none !important;
+  }
+
+  .gallery-caption {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #444;
+  }

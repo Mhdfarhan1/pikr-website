@@ -1,0 +1,104 @@
+[18-Jul-2025 06:53:11 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:53:11 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:53:15 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:53:15 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:54:14 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:54:14 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[17-Jul-2025 23:56:36 UTC] PHP Parse error:  Unclosed '{' on line 62 in /home/pikreque/public_html/admin/dashboard_admin.php on line 510
+[17-Jul-2025 23:56:38 UTC] PHP Parse error:  Unclosed '{' on line 62 in /home/pikreque/public_html/admin/dashboard_admin.php on line 510
+[17-Jul-2025 23:56:41 UTC] PHP Parse error:  Unclosed '{' on line 62 in /home/pikreque/public_html/admin/dashboard_admin.php on line 510
+[17-Jul-2025 23:57:02 UTC] PHP Warning:  require_once(/home/pikreque/public_html/admin/../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/dashboard_admin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:06 UTC] PHP Warning:  require_once(/home/pikreque/public_html/admin/../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:06 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/dashboard_admin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:07 UTC] PHP Warning:  require_once(/home/pikreque/public_html/admin/../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/dashboard_admin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:38 UTC] PHP Warning:  require_once(/home/pikreque/public_html/admin/../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[17-Jul-2025 23:57:38 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/dashboard_admin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/pikreque/public_html/admin/dashboard_admin.php on line 3
+[18-Jul-2025 06:58:15 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:58:15 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:58:54 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 06:58:54 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:08:28 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:08:28 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:08:34 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:08:34 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:09:05 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:09:05 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:11:06 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:11:06 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:12:20 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:12:20 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:14:16 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/frofile/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:14:16 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/frofile/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/frofile/tambah_frofile.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(307): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/frofile/tambah_frofile.php on line 2
+[18-Jul-2025 07:20:23 Asia/Jakarta] PHP Warning:  require_once(/home/pikreque/public_html/admin/galeri/../../config/koneksi.php): Failed to open stream: No such file or directory in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 2
+[18-Jul-2025 07:20:23 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Failed opening required '/home/pikreque/public_html/admin/galeri/../../config/koneksi.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/pikreque/public_html/admin/galeri/tambah_galeri.php:2
+Stack trace:
+#0 /home/pikreque/public_html/admin/dashboard_admin.php(338): include()
+#1 {main}
+  thrown in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 2
+[22-Oct-2025 19:18:22 Asia/Jakarta] PHP Warning:  Undefined array key "judul" in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:18:22 Asia/Jakarta] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:18:32 Asia/Jakarta] PHP Warning:  Undefined array key "judul" in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:18:32 Asia/Jakarta] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:19:12 Asia/Jakarta] PHP Warning:  Undefined array key "judul" in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:19:12 Asia/Jakarta] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:23:24 Asia/Jakarta] PHP Warning:  Undefined array key "judul" in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:23:24 Asia/Jakarta] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
+[22-Oct-2025 19:27:55 Asia/Jakarta] PHP Warning:  Undefined array key "judul" in /home/pikreque/public_html/admin/galeri/tambah_galeri.php on line 8
