@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once __DIR__ . '/../confiq/koneksi.php'; 
+include_once __DIR__ . '/../confiq/koneksi.php';
 include '../template/heeder.php'; // header
 
 // Hitung data dashboard
@@ -410,6 +410,18 @@ $jumlah_pengumuman = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS 
               include 'pendaftaran/edit_pendaftaran.php';
             } elseif ($page == 'hapus_pendaftaran') {
               include 'pendaftaran/hapus_pendaftaran.php';
+
+            // === Fitur YouTube Channel ===
+            } elseif ($page == 'youtube_channel') {
+              include 'youtube/youtube_channel.php';
+            } elseif ($page == 'tambah_youtube') {
+              include 'youtube/tambah_youtube.php';
+            } elseif ($page == 'edit_youtube') {
+              include 'youtube/edit_youtube.php';
+            } elseif ($page == 'hapus_youtube') {
+              include 'youtube/hapus_youtube.php';
+            
+
 
               // === Fitur Tambah Lomba ===
             } elseif ($page == 'data_lomba') {

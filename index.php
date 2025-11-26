@@ -15,64 +15,65 @@ $userAgentHashName = 'site_admin_ua';
 
 // Jika token dikirim via URL, set cookie (HTTP only, secure jika pakai https)
 if (isset($_GET['admin']) && hash_equals($adminToken, $_GET['admin'])) {
-    // set cookie token (httpOnly, SameSite)
-    $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
-    setcookie($cookieName, $adminToken, [
-        'expires' => time() + $cookieTtl,
-        'path' => '/',
-        'domain' => $_SERVER['HTTP_HOST'],
-        'secure' => $secure,
-        'httponly' => true,
-        'samesite' => 'Lax'
+  // set cookie token (httpOnly, SameSite)
+  $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+  setcookie($cookieName, $adminToken, [
+    'expires' => time() + $cookieTtl,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'],
+    'secure' => $secure,
+    'httponly' => true,
+    'samesite' => 'Lax'
+  ]);
+
+  // set user agent hash cookie (not httponly so we can read if needed) OR store via another httponly cookie
+  if ($checkUserAgent) {
+    $uaHash = hash('sha256', $_SERVER['HTTP_USER_AGENT'] ?? '');
+    setcookie($userAgentHashName, $uaHash, [
+      'expires' => time() + $cookieTtl,
+      'path' => '/',
+      'domain' => $_SERVER['HTTP_HOST'],
+      'secure' => $secure,
+      'httponly' => true,
+      'samesite' => 'Lax'
     ]);
+  }
 
-    // set user agent hash cookie (not httponly so we can read if needed) OR store via another httponly cookie
-    if ($checkUserAgent) {
-        $uaHash = hash('sha256', $_SERVER['HTTP_USER_AGENT'] ?? '');
-        setcookie($userAgentHashName, $uaHash, [
-            'expires' => time() + $cookieTtl,
-            'path' => '/',
-            'domain' => $_SERVER['HTTP_HOST'],
-            'secure' => $secure,
-            'httponly' => true,
-            'samesite' => 'Lax'
-        ]);
-    }
-
-    // Redirect supaya URL bersih dari ?admin=
-    $url = strtok($_SERVER["REQUEST_URI"], '?');
-    header("Location: $url");
-    exit;
+  // Redirect supaya URL bersih dari ?admin=
+  $url = strtok($_SERVER["REQUEST_URI"], '?');
+  header("Location: $url");
+  exit;
 }
 
 // Fungsi validasi cookie/token
-function is_admin_allowed($adminToken, $cookieName, $checkUserAgent = true, $userAgentHashName = 'site_admin_ua') {
-    if (!isset($_COOKIE[$cookieName])) return false;
-    // gunakan hash_equals untuk mencegah timing attack
-    if (!hash_equals($adminToken, $_COOKIE[$cookieName])) return false;
+function is_admin_allowed($adminToken, $cookieName, $checkUserAgent = true, $userAgentHashName = 'site_admin_ua')
+{
+  if (!isset($_COOKIE[$cookieName])) return false;
+  // gunakan hash_equals untuk mencegah timing attack
+  if (!hash_equals($adminToken, $_COOKIE[$cookieName])) return false;
 
-    if ($checkUserAgent) {
-        $uaHash = hash('sha256', $_SERVER['HTTP_USER_AGENT'] ?? '');
-        if (!isset($_COOKIE[$userAgentHashName]) || !hash_equals($_COOKIE[$userAgentHashName], $uaHash)) {
-            return false;
-        }
+  if ($checkUserAgent) {
+    $uaHash = hash('sha256', $_SERVER['HTTP_USER_AGENT'] ?? '');
+    if (!isset($_COOKIE[$userAgentHashName]) || !hash_equals($_COOKIE[$userAgentHashName], $uaHash)) {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
 
 // Optional: clear admin cookie via ?admin_clear=1 (untuk logout)
 if (isset($_GET['admin_clear']) && $_GET['admin_clear'] == '1') {
-    setcookie($cookieName, '', time() - 3600, '/');
-    setcookie($userAgentHashName, '', time() - 3600, '/');
-    header('Location: /');
-    exit;
+  setcookie($cookieName, '', time() - 3600, '/');
+  setcookie($userAgentHashName, '', time() - 3600, '/');
+  header('Location: /');
+  exit;
 }
 
 // Jika maintenance aktif dan bukan admin yang diizinkan -> tampilkan maintenance
 if ($maintenance && !is_admin_allowed($adminToken, $cookieName, $checkUserAgent, $userAgentHashName)) {
-    include 'maintenance.php';
-    exit;
+  include 'maintenance.php';
+  exit;
 }
 // jika sampai sini, browser ini punya cookie valid -> lanjut ke website normal
 
@@ -117,6 +118,19 @@ foreach ($kategori_list as $kategori) {
       'deskripsi' => $row['deskripsi']
     ];
   }
+}
+
+// Ambil video terbaru
+$query = mysqli_query($conn, "SELECT * FROM youtube ORDER BY tanggal_upload DESC LIMIT 1");
+$video = mysqli_fetch_assoc($query);
+
+$video_link = $video['link'] ?? 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+$video_title = $video['judul'] ?? 'Video Terbaru PIK-R';
+
+// Jika link YouTube berupa "https://youtu.be/..." ubah ke format embed
+if (strpos($video_link, 'youtu.be') !== false) {
+  $video_id = basename(parse_url($video_link, PHP_URL_PATH));
+  $video_link = "https://www.youtube.com/embed/$video_id";
 }
 
 $strukturQuery = mysqli_query($conn, "SELECT * FROM struktur_organisasi WHERE status = 'aktif' ORDER BY urutan ASC");
@@ -192,53 +206,124 @@ $prestasi_query = mysqli_query($conn, "SELECT * FROM prestasi ORDER BY tanggal_i
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
-   .description-truncate {
+
+  .description-truncate {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 4.5em; /* Supaya tinggi konsisten */
+    min-height: 4.5em;
+    /* Supaya tinggi konsisten */
   }
-  
+
   .gallery-item {
-  position: relative;
-  width: 100%;
-  padding-top: 100%; /* Memaksa kotak: tinggi = lebar */
-  overflow: hidden;
-  border-radius: 10px;
-}
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    /* Memaksa kotak: tinggi = lebar */
+    overflow: hidden;
+    border-radius: 10px;
+  }
 
-.gallery-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Gambar akan terisi penuh */
-  object-position: center;
-}
+  .gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Gambar akan terisi penuh */
+    object-position: center;
+  }
 
-.member .pic {
-  position: relative;
-  width: 100%;
-  padding-top: 100%; /* 1:1 rasio kotak, atau pakai 75% untuk 4:3 */
-  overflow: hidden;
-  border-radius: 10px;
-}
+  .member .pic {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    /* 1:1 rasio kotak, atau pakai 75% untuk 4:3 */
+    overflow: hidden;
+    border-radius: 10px;
+  }
 
-.member .pic img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+  .member .pic img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 
+  /* Styling Scrollbar */
+  .video-scroll-container::-webkit-scrollbar {
+    height: 8px;
+    /* Tinggi scrollbar horizontal */
+  }
 
+  .video-scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .video-scroll-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .video-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+
+  /* Efek hover kartu */
+  .video-card {
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Mengatur agar slide memiliki lebar tetap, sehingga slide di sampingnya bisa "mengintip" */
+  .risetSwiper .swiper-slide {
+    width: 80%;
+    /* Untuk layar HP */
+    max-width: 450px;
+    /* Untuk layar Laptop, agar tidak terlalu lebar */
+    opacity: 0.4;
+    /* Slide samping agak transparan */
+    transform: scale(0.9);
+    /* Slide samping agak kecil */
+    transition: all 0.3s ease;
+  }
+
+  /* Slide yang sedang aktif di tengah */
+  .risetSwiper .swiper-slide-active {
+    opacity: 1;
+    /* Slide tengah terlihat jelas */
+    transform: scale(1);
+    /* Ukuran normal */
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Styling titik pagination agar berwarna oranye saat aktif */
+  .risetSwiper .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+  }
+
+  .risetSwiper .swiper-pagination-bullet-active {
+    background: #F7941E;
+    /* Warna Oranye */
+    opacity: 1;
+    width: 25px;
+    /* Titik aktif lebih panjang */
+    border-radius: 5px;
+  }
 </style>
 
 <body class="index-page">
@@ -248,52 +333,52 @@ $prestasi_query = mysqli_query($conn, "SELECT * FROM prestasi ORDER BY tanggal_i
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background position-relative">
-  <img src="assets/img/baground1.JPG" alt="Background Hero" class="hero-bg w-100 position-absolute top-0 start-0" style="height: 100%; object-fit: cover; z-index: -1;">
+      <img src="assets/img/baground1.JPG" alt="Background Hero" class="hero-bg w-100 position-absolute top-0 start-0" style="height: 100%; object-fit: cover; z-index: -1;">
 
-  <div class="container">
-    <div class="row justify-content-center align-items-center gy-4">
+      <div class="container">
+        <div class="row justify-content-center align-items-center gy-4">
 
-      <!-- Hero Image -->
-      <div class="col-lg-6 col-md-8 col-12 hero-img text-center" data-aos="zoom-out" data-aos-delay="100">
-        <img src="assets/img/baground2.JPG" class="img-fluid rounded-4 shadow" alt="Hero Image PIK R Request">
-      </div>
+          <!-- Hero Image -->
+          <div class="col-lg-6 col-md-8 col-12 hero-img text-center" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/baground2.JPG" class="img-fluid rounded-4 shadow" alt="Hero Image PIK R Request">
+          </div>
 
-      <!-- Hero Text -->
-      <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center text-center text-lg-start" data-aos="fade-in">
-        <h1 class="mb-3">
-          Selamat Datang Di Website <span style="border-bottom: 3px solid #34d399;">PIK-R REQUEST</span>
-        </h1>
-        <h2 class="mb-3">SMA NEGERI 1 TASIK PUTRI PUYU</h2>
-        <p class="mb-4">Organisasi Pusat Informasi dan Konseling Remaja yang terletak di kecamatan Tasik Putri Puyu</p>
+          <!-- Hero Text -->
+          <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center text-center text-lg-start" data-aos="fade-in">
+            <h1 class="mb-3">
+              Selamat Datang Di Website <span style="border-bottom: 3px solid #34d399;">PIK-R REQUEST</span>
+            </h1>
+            <h2 class="mb-3">SMA NEGERI 1 TASIK PUTRI PUYU</h2>
+            <p class="mb-4">Organisasi Pusat Informasi dan Konseling Remaja yang terletak di kecamatan Tasik Putri Puyu</p>
 
-        <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center justify-content-lg-start">
-          <a href="#about" class="btn-get-started mb-2 mb-sm-0">Tentang Organisasi</a>
-          <a href="https://www.instagram.com/reel/CwOnXrwgj8g/?igsh=Y3A0ejA0cjhpZDN1"
-             class="btn-watch-video d-flex align-items-center justify-content-center" target="_blank" rel="noopener noreferrer">
-             <i class="bi bi-play-circle me-2"></i><span>Video Profil</span>
-          </a>
+            <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center justify-content-lg-start">
+              <a href="#about" class="btn-get-started mb-2 mb-sm-0">Tentang Organisasi</a>
+              <a href="https://www.instagram.com/reel/CwOnXrwgj8g/?igsh=Y3A0ejA0cjhpZDN1"
+                class="btn-watch-video d-flex align-items-center justify-content-center" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-play-circle me-2"></i><span>Video Profil</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- Hero Waves -->
-  <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
-    <defs>
-      <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-    </defs>
-    <g class="wave1">
-      <use xlink:href="#wave-path" x="50" y="3"></use>
-    </g>
-    <g class="wave2">
-      <use xlink:href="#wave-path" x="50" y="0"></use>
-    </g>
-    <g class="wave3">
-      <use xlink:href="#wave-path" x="50" y="9"></use>
-    </g>
-  </svg>
-</section>
+      <!-- Hero Waves -->
+      <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <defs>
+          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+        </defs>
+        <g class="wave1">
+          <use xlink:href="#wave-path" x="50" y="3"></use>
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="0"></use>
+        </g>
+        <g class="wave3">
+          <use xlink:href="#wave-path" x="50" y="9"></use>
+        </g>
+      </svg>
+    </section>
 
 
     <!-- Frofile Section -->
@@ -412,6 +497,69 @@ $prestasi_query = mysqli_query($conn, "SELECT * FROM prestasi ORDER BY tanggal_i
 
     </section><!-- /Details Section -->
 
+
+    <section class="py-20 bg-white overflow-hidden">
+      <div class="container mx-auto px-6">
+
+        <div class="container section-title text-center" data-aos="fade-up">
+          <h2>Channel YouTube</h2>
+          <div class="flex flex-col md:flex-row justify-center gap-2 mt-2">
+            <span>Dokumentasi Terbaru</span>
+            <span class="description-title text-green-600">PIK-R Request</span>
+          </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="text-gray-800" data-aos="fade-right">
+            <!-- Judul Kecil dan Label -->
+
+
+
+            <!-- Deskripsi -->
+            <p class="text-gray-700 text-lg leading-relaxed mb-8 mt-2">
+              Kami mendokumentasikan setiap momen berharga, mulai dari sosialisasi, perlombaan, hingga kegiatan seru lainnya. Tonton, pelajari, dan jangan lupa untuk mendukung kami!
+            </p>
+
+            <!-- Tombol -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://www.youtube.com/@Pik_REQUESTSMANEGERI1TASIKPUTR" target="_blank"
+                class="inline-flex justify-center items-center bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-green-400/30 hover:-translate-y-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                </svg>
+                Subscribe Channel
+              </a>
+            </div>
+          </div>
+
+
+          <div class="w-full relative" data-aos="fade-left">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-slate-200 rounded-full blur-3xl opacity-60"></div>
+
+            <div class="relative bg-white p-3 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 transform transition-transform hover:scale-[1.02] duration-500">
+              <div class="rounded-2xl overflow-hidden aspect-video relative shadow-inner">
+                <iframe class="w-full h-full object-cover"
+                  src="<?= htmlspecialchars($video_link) ?>"
+                  title="<?= htmlspecialchars($video_title) ?>"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+
+
+
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section">
       <div class="container section-title" data-aos="fade-up">
@@ -517,36 +665,36 @@ $prestasi_query = mysqli_query($conn, "SELECT * FROM prestasi ORDER BY tanggal_i
 
 
     <section id="team" class="team section">
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Kerja Sama</h2>
-    <div><span>Kerja Sama</span> <span class="description-title">PIK- R Request</span></div>
-  </div>
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kerja Sama</h2>
+        <div><span>Kerja Sama</span> <span class="description-title">PIK- R Request</span></div>
+      </div>
 
-  <div class="container">
-    <div class="row gy-5">
-      <?php while ($data = mysqli_fetch_assoc($queryKerjasama)) : ?>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="member">
-            <div class="pic">
-              <img src="upload/kerjasama/<?= htmlspecialchars($data['gambar']) ?>" class="img-fluid" alt="">
+      <div class="container">
+        <div class="row gy-5">
+          <?php while ($data = mysqli_fetch_assoc($queryKerjasama)) : ?>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="member">
+                <div class="pic">
+                  <img src="upload/kerjasama/<?= htmlspecialchars($data['gambar']) ?>" class="img-fluid" alt="">
+                </div>
+                <div class="member-info">
+                  <h4><?= htmlspecialchars($data['nama_instansi']) ?></h4>
+                  <p class="description-truncate mb-2"><?= htmlspecialchars($data['deskripsi']) ?></p>
+                </div>
+              </div>
             </div>
-            <div class="member-info">
-              <h4><?= htmlspecialchars($data['nama_instansi']) ?></h4>
-              <p class="description-truncate mb-2"><?= htmlspecialchars($data['deskripsi']) ?></p>
-            </div>
-          </div>
+          <?php endwhile; ?>
         </div>
-      <?php endwhile; ?>
-    </div>
 
-    <!-- Tombol Lihat Semua -->
-    <div class="text-center mt-4">
-      <a href="informasi/kerja_sama.php" class="btn btn-primary shadow-sm px-4 fw-semibold">
-        <i class="bi bi-arrow-right-circle me-1"></i> Lihat Semua Kerja Sama
-      </a>
-    </div>
-  </div>
-</section>
+        <!-- Tombol Lihat Semua -->
+        <div class="text-center mt-4">
+          <a href="informasi/kerja_sama.php" class="btn btn-primary shadow-sm px-4 fw-semibold">
+            <i class="bi bi-arrow-right-circle me-1"></i> Lihat Semua Kerja Sama
+          </a>
+        </div>
+      </div>
+    </section>
 
 
     <section id="prestasi" class="prestasi section">
@@ -603,35 +751,40 @@ $prestasi_query = mysqli_query($conn, "SELECT * FROM prestasi ORDER BY tanggal_i
       });
     </script>
 
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".mySwiper", {
-        loop: true,
-        speed: 600,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        spaceBetween: 30,
-        slidesPerView: 1,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        },
-        breakpoints: {
-          576: {
-            slidesPerView: 2
+      // Inisialisasi semua swiper di halaman (bisa ganda)
+      document.querySelectorAll('.swiper').forEach((slider) => {
+        new Swiper(slider, {
+          loop: true,
+          speed: 600,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
           },
-          768: {
-            slidesPerView: 3
+          spaceBetween: 30,
+          slidesPerView: 1,
+          pagination: {
+            el: slider.querySelector('.swiper-pagination'),
+            clickable: true
           },
-          992: {
-            slidesPerView: 4
+          breakpoints: {
+            576: {
+              slidesPerView: 2
+            },
+            768: {
+              slidesPerView: 3
+            },
+            992: {
+              slidesPerView: 4
+            }
           }
-        }
+        });
       });
     </script>
+
+
+  </main><!-- End #main -->
 
 
 

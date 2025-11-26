@@ -173,6 +173,15 @@
             </a>
         </li>
 
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded <?= $page == 'youtube_channel' ? 'fw-bold text-dark' : 'text-muted' ?>"
+                href="dashboard_admin.php?page=youtube_channel">
+                <i class="bi bi-play-btn me-2"></i>
+                <span> Upload YouTube</span>
+            </a>
+        </li>
+
+
 
         <!-- Logout -->
         <li class="nav-item mt-2">

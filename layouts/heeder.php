@@ -1,6 +1,6 @@
 <?php
 // Panggil config untuk base_url
-include_once __DIR__ . '/../confiq/koneksi.php'; 
+include_once __DIR__ . '/../confiq/koneksi.php';
 
 ?>
 <!DOCTYPE html>
@@ -15,9 +15,23 @@ include_once __DIR__ . '/../confiq/koneksi.php';
   <link href="<?= $base_url ?>assets/img/logo 1.png" rel="apple-touch-icon" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+
   <link href="<?= $base_url ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/vendor/aos/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      // PENTING: preflight false agar Tailwind tidak merusak style Bootstrap Anda
+      corePlugins: {
+        preflight: false,
+      }
+    }
+  </script>
+
   <link href="<?= $base_url ?>assets/css/main.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/css/style.css" rel="stylesheet" />
 
@@ -542,8 +556,6 @@ include_once __DIR__ . '/../confiq/koneksi.php';
         transform: rotate(360deg);
       }
     }
-
-    
   </style>
 </head>
 
@@ -719,6 +731,8 @@ include_once __DIR__ . '/../confiq/koneksi.php';
       handleResize();
     });
   </script>
+
+ 
 </body>
 
 </html>
